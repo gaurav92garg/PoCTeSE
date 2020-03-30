@@ -1,0 +1,17 @@
+{
+   "name": "angular-express-seed",
+   "author": "mattmc",
+   "version": "0.0.1",
+   "main": "server/index.js",
+   "dependencies": {
+      "express": "latest",
+      "body-parser": "latest",
+      "jsforce": "^1.9.3"
+   },
+   "engines": {
+      "node": "6.9.1"
+   },
+   "scripts": {
+      "start": "node server/index.js"
+   }
+}

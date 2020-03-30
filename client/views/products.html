@@ -1,0 +1,100 @@
+<!-- As a heading -->
+<div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Products</span>
+</nav>
+<div>
+    <button type="button" class="btn btn-primary btn-sm" ng-click='getProducts()'>Get Products</button>
+</div>
+
+<!-- <btn ng-click='getProducts()'>Get Products</btn> -->
+<div class="container" ng-if="offers.length > 0">
+    <h1>Products </h1>
+    <div class="row">
+
+
+        <div ng-repeat="offer in offers" class="card col-sm" style="cursor:pointer"
+            ng-click='getProductDetails(offer.ProductCode)'>
+            <div class="card-body">
+                <h5 class="card-title">Product Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{offer.Name}}</h6>
+                <h5 class="card-title">Product Code</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{offer.ProductCode}}</h6>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row" ng-if="offers.length > 0">
+            <button type="button" class="btn btn-primary btn-sm" ng-click='getProductDetails()'>Get Product Details</button>
+    </div> -->
+    <!-- {{productDetails}} -->
+    <div class="container" ng-if="productDetails != null">
+        <h1>Product Details</h1>
+
+        <div class="row" ng-repeat="obj in productDetails">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Product Name <i class="fa fa-cart-plus" style="float: right;"
+                            ng-click="addToBasket(obj.offer.ProductCode)" aria-hidden="true"></i>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{obj.offer.Name}}</h6>
+                    <div ng-repeat="price in obj.offer.priceResult">
+                        <div
+                            ng-if="(price.ChargeType__c == 'Recurring' || price.ChargeType__c == 'One-time') && (price.Type__c = 'Price')">
+                            Price : {{price.DisplayText__c}}
+                        </div>
+                    </div>
+                    <!-- {{obj.offer.AttributeCategory.records}} -->
+                    <div ng-repeat="attr in obj.offer.AttributeCategory.records">
+                        <div ng-if="attr.Name == 'Attributes'">
+                            <div ng-repeat="att in attr.productAttributes.records">
+                                <div ng-if="att.inputType == 'dropdown'">
+                                    Attribute Name: {{att.label}}
+                                    <div ng-repeat="val in att.values">
+                                        <div ng-if="val.defaultSelected == true">
+                                            Attribute Value: {{val.value}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-if="basketInfo != null">
+        <h1>Basket Details</h1>
+
+        <div class="row" ng-repeat="obj in basketInfo.records">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{obj.Name}}
+                    </h5>
+                    <h5 class="card-title">Quantity: {{obj.Quantity.value}}
+                    </h5>
+                    <h5 class="card-title">One Time Total: {{obj.vlocity_cmt__OneTimeCharge__c.value}}
+                    </h5>
+                    <h5 class="card-title">Recurring Total: {{obj.vlocity_cmt__RecurringCharge__c.value}}
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click='createOrder()'>Create Order</button>
+        </div>
+        <div ng-if="orderDetails != null">
+                <h1>Your Order has been created successfully. </h1><br/>
+                <h2 class="card-title">Order Number: {{orderDetails}}
+                    </h2>
+
+        </div>
+        
+    </div>
+
+</div>
