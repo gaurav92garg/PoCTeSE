@@ -10,7 +10,7 @@ Clone this Repository in Local Machine. After cloning, traverese to Roor Directo
 
 This application uses Express server to create a local server in your machine. 
 
-Also, We are using jsForce plugin for authentication purpose and consume APIs from SalesForce Instance by provided jsForce library methods.
+Also, We are using jsForce plugin for authentication purpose and consume APIs from SalesForce Instance by provided jsForce library methods. Have a look at below link for reference https://jsforce.github.io/document/#connection
 
 Once all the setup is completed, run 'npm start' to create a server and in your browser open http://localhost:8081, which redirects to login page. After you enter salesforce username and password, it will redirect to products page, where you can call multiple APIs.
 
